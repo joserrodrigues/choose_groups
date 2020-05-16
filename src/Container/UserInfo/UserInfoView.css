@@ -1,0 +1,23 @@
+.enterModal{
+    background-color: #151819;
+    -webkit-box-shadow: -12px 1px 15px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -12px 1px 15px 0px rgba(0,0,0,1);
+    box-shadow: -12px 1px 15px 0px rgba(0,0,0,1);
+}
+
+.enterModal .modal-content {
+    background-color: #151819 !important;
+    color: #91A3AD;
+}
+
+.enterModal .modal-header{
+    font-family: Gotham !important;
+}
+
+.enterModal .modal-body {
+    font-family: Gotham-book !important;
+}
+
+.enterModal .titleModal{
+    margin-bottom: 20px;
+}

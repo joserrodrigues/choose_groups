@@ -1,0 +1,55 @@
+.containerAddInfo{
+    background-color: #151819;
+    color: #91A3AD;
+    height: 100%;
+}
+.closeButtonAddInfo{
+    text-align: right;
+}
+
+.titleAddInfo{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 23px;    
+}
+
+@media (max-width: 900px) {
+    .titleAddInfo{
+        font-size: 18px;
+        line-height: 21px;
+    }
+
+}
+
+
+.buttonDiv{
+    margin-top: 20px;
+}
+
+.txtDescr{
+    height: 190px;
+}
+
+.messageError{
+    color: #dc3545;
+    font-size: 80%;
+    margin-top: 0.25rem;
+}
+.input-group{
+    font-family: Gotham-book !important;
+    font-size: 12px;
+}
+.rw-combobox{
+    font-family: Gotham-book !important;
+    font-size: 12px;
+}
+.comboBox{
+    height: 36px;
+    font-size: 15px;
+}
+
+.rw-list-option{
+    font-size: 15px;
+}

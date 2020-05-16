@@ -1,0 +1,76 @@
+.searchbar{
+    width: 400px !important;
+    margin-right: 30px;    
+    height: 44px;
+    font-family: Gotham !important;
+}
+
+.searchBarText{
+    height: 44px !important;
+    font-size: 16px !important;
+}
+
+
+.searchBarIcon{
+    font-size: 18px;
+    
+}
+
+
+@media (max-width: 900px) {
+    .searchbar{
+        width: 100% !important;
+        margin-top: 10px;
+        height: 38px;
+    }
+
+    .searchBarText{
+        height: 38px !important;
+        font-size: 14px !important;
+    }
+
+    .searchBarIcon{
+        font-size: 14px;
+        
+    }
+}
+
+
+
+.searchBarButtonDropDown{ 
+    color: black !important;
+}
+
+.searchBarButtonDropDown:hover{
+    color: #444 !important;
+    text-decoration: underline;
+}
+.searchBarButtonDropDown:active{
+    color: #ccc !important;
+    text-decoration: underline;
+}
+
+.searchbar .dropdown-item {
+    color: #91A3AD !important;
+    font-family: Gotham-book !important;
+}
+
+.searchbar .dropdown-menu{
+    background-color: #151819 !important;
+}
+
+.searchbar .dropdown-divider {
+    border-top: 1px solid #ED145B !important;
+}
+.searchbar .dropdown-header {
+    color: #91A3AD !important;
+}
+
+.searchbar .dropdown-item:hover{
+    background-color: #333 !important;
+}
+
+.searchbar .dropdown-item:active{
+    background-color: #000 !important;
+    border: 0px;
+}

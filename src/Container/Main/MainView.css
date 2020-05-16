@@ -1,0 +1,158 @@
+.mainViewBg {
+    background-image: url(/img/background.png);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media screen and (orientation:portrait) {
+    .mainLoginBg {
+        background-image: url(/img/background.png);
+    }
+}
+
+
+
+.headerRow{
+    height: 70px;
+    padding-top: 20px;
+}
+.rightHeader{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.react-confirm-alert-overlay{
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.react-confirm-alert-body{
+    font-family: Gotham-book !important;
+    background-color: #000 !important;
+    color: #91A3AD !important;
+}
+
+.react-confirm-alert-body > h1{
+    font-family: Gotham !important;
+    background-color: #000 !important;
+    color: #91A3AD !important;
+}
+
+.react-confirm-alert-button-group > button{
+    font-family: Gotham !important;
+    background-color: #ED145B !important;
+    color: #000 !important;
+}
+
+.react-confirm-alert-button-group > button:hover{
+    color: #444 !important;
+    text-decoration: underline;
+}
+
+.sidePageDiv {
+    height: 100%;
+    overflow: auto;
+    background-color: #151819;
+    -webkit-box-shadow: -3px 0px 10px -2px rgba(0,0,0,1);
+    -moz-box-shadow: -3px 0px 10px -2px rgba(0,0,0,1);
+    box-shadow: -3px 0px 10px -2px rgba(0,0,0,1);
+}
+
+.userInfoDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;    
+    justify-content: flex-end;
+}
+
+.logoDiv{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logoImg{
+    width: 300px;
+}
+
+@media (max-width: 900px) {
+    .logoImg{
+        width: 90px;
+    }
+}
+@media (max-width: 1025px) {
+
+    .userInfoDiv .customButton{
+        font-size: 11px !important;
+        height: 35px;
+    }
+}
+
+
+.userInfoButton{
+    color: #ED145B;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+}
+
+.PopupName{
+    background-color: #ED145B;
+    color: #151819;
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    border-radius: 20px;
+}
+
+@media (max-width: 900px) {
+    .PopupName{
+        font-size: 15px;
+        width: 35px;
+        height: 35px;
+        border-radius: 18px;
+    }
+
+}
+.popover-body{
+    background-color:#151819 ;
+    color: #91A3AD;
+    border: 1px solid #666;
+}
+
+.userInfoTitle{
+    font-family: Gotham !important;
+    color: #91A3AD;
+}
+.userInfoDesc {
+    font-family: Gotham-book !important;
+    color: #91A3AD;
+}
+
+.bs-popover-bottom > .arrow::after, .bs-popover-auto[x-placement^="bottom"] > .arrow::after{
+    border-bottom-color: #666 !important;
+}
+
+.buttonLogoutUser{
+    margin-top: 12px;
+    color: black !important;
+    height: 25px;
+    padding-top: 0px !important;
+}
+
+.buttonLogoutUser:hover{
+    color: #444 !important;
+    text-decoration: underline;
+}
+.buttonLogoutUser:active{
+    color: #ccc !important;
+    text-decoration: underline;
+}
+

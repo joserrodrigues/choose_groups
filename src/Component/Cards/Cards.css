@@ -1,0 +1,120 @@
+.card {
+    border: 0px !important;
+    margin-bottom: 10px;
+}
+.cardBody{
+    background-color: #151819;
+    -webkit-box-shadow: 3px 3px 10px -2px rgba(0,0,0,1);
+    -moz-box-shadow: 3px 3px 10px -2px rgba(0,0,0,1);
+    box-shadow: 3px 3px 10px -2px rgba(0,0,0,1);
+}
+.titleCard{
+    color: #91A3AD;
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 1.2em;
+    height: 3.6em;
+    
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.subtitleCard{
+    font-family: Gotham-book !important;    
+    color: #91A3AD;
+    font-size: 13px;
+    margin-top: 18px;
+    line-height: 1.5em;
+    height: 3em;
+
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+@media (max-width: 900px) {
+    .titleCard{
+        font-size: 17px;
+        line-height: 1em;
+        height: 3em;        
+    }
+    
+    .subtitleCard{
+        font-size: 11px;
+        margin-top: 10px;
+        line-height: 1.5em;
+        height: 3em;    
+    }
+}
+
+
+.CardButton{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.divIconCard{
+    text-align: center;
+}
+.iconCard {
+    font-size: 23px;
+    margin-top: 15px;
+    color: #91A3AD;
+    text-align: center;
+}
+
+.CardTypeName{
+    color: #91A3AD;
+    font-size: 15px;
+    text-align: center;
+}
+
+.CardButtonIcon{    
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: 5px;
+    margin-right: 5px;
+    cursor: pointer;    
+}
+
+.iconButtonCard{
+    font-size: 20px;
+    color: #ED145B;
+    text-align: center;    
+}
+
+.rowCardButtons {
+    height: 100%;
+    height: 70px;
+}
+
+@media (max-width: 900px) {
+    .logoImg{
+        width: 90px;
+    }
+
+
+    .CardButton .customButton{
+        font-size: 11px !important;
+        height: 35px;
+    }
+
+    .iconCard {
+        font-size: 18px;
+    }
+
+    .CardTypeName{
+        font-size: 12px;
+    }
+    
+}

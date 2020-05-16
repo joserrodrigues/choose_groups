@@ -1,0 +1,12 @@
+.customButton:hover{
+    color: #444 !important;
+    text-decoration: underline;
+}
+.customButton:active{
+    color: #ccc !important;
+    text-decoration: underline;
+}
+
+.customButton .btn {
+    background-color: transparent;
+}

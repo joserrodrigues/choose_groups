@@ -1,0 +1,82 @@
+.containerDetailInfo{
+    background-color: #151819;
+    color: #91A3AD;
+    height: 100%;
+}
+
+.titleInfoDetailInfo {
+  color: #ED145B;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+
+.divButtonDetailInfo{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.descInfoDetailInfo{
+  font-family: Gotham-book !important;
+}
+
+.descInfoDetailInfoName{
+  font-family: Gotham !important;
+  font-size: 16px;
+}
+
+.descInfoDetailInfoGrade{
+  font-family: Gotham-book !important;
+  font-size: 14px;
+}
+
+.descInfoDetailInfoLine{
+  border-top-color: #ED145B;
+  margin-right: 35%;
+}
+
+.descInfoDetailInfoLineDiv{
+  height: 29px;
+}
+
+.iconDetailInfo {
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 28px;
+}
+
+.divfinalSpace{
+  margin-bottom: 20px;
+}
+
+.buttonGoOutDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .titleInfoDetailInfo{
+      font-size: 15px;
+  }
+  .descInfoDetailInfoName{
+    font-size: 14px;
+  }
+  .descInfoDetailInfoGrade{   
+    font-size: 12px;
+  }
+  .iconDetailInfo {
+    font-size: 23px;
+  }
+
+
+  .buttonGoOutDiv .customButton{
+    font-size: 11px !important;
+    height: 35px;
+  }
+
+
+}
