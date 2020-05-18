@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import DetailInfoView from './DetailInfoView'
 import DetailInfoModel from './DetailInfoModel'
 
@@ -48,6 +48,8 @@ const DetailInfoController = (props) => {
             isSuccess={isSuccess}
             errorInfo={errorInfo}
             isLoadingGoOut={isLoadingGoOut}
+            userHasRegistered={props.userHasRegistered}
+            userHasSubscribed={props.userHasSubscribed}
         />
         
     )

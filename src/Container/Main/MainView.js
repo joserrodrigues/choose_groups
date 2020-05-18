@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { Row, Col, Popover, PopoverHeader, PopoverBody, Button } from 'reactstrap';
+import React from 'react'
+import { Row, Col, Popover, PopoverBody, Button } from 'reactstrap';
 
 import MainSeparateView from './MainSeparateView'
 import CustomButton from '../../Component/Button/CustomButton'
@@ -27,7 +27,7 @@ const MainView = (props) => {
     }
         
     const { innerWidth: width } = window;
-    console.log(" Width = " + width);
+    // console.log(" Width = " + width);
 
     let logoImg = 'img/Logo.png';
     let placement = "bottom";
@@ -35,6 +35,8 @@ const MainView = (props) => {
       logoImg = 'img/Logo_small.png';
       placement = "left";
     }
+
+    console.log ( " Check Ideas = " + props.userHasSubscribed + " - " + props.userHasRegistered);
 
     return (
       <Row>
@@ -46,7 +48,7 @@ const MainView = (props) => {
             <Row className='headerRow'>
                 <Col md='4' sm="4" xs="4">
                   <div className='logoDiv'>
-                    <img src={logoImg} className='logoImg'/>
+                    <img src={logoImg} className='logoImg' alt="LogoFiap"/>
                   </div>
                   
                 </Col>
@@ -59,11 +61,14 @@ const MainView = (props) => {
                               onChange={props.changeSearchBar}
                             />
                         ))}
-                        <CustomButton 
-                          icon={faLightbulb}
-                          text="Nova Ideia"
-                          onClick={() => props.handleClick(null)}
-                          className="buttonNewIdea"/>
+                        {renderIf(!props.userHasRegistered && !props.userHasSubscribed)(() => (
+                            <CustomButton 
+                              icon={faLightbulb}
+                              text="Nova Ideia"
+                              onClick={() => props.handleClick(null)}
+                              className="buttonNewIdea"/>
+                        ))}
+
 
                       <div id="Popover1" type="button" className="PopupName" onClick={() => props.toggleUserInfo}>
                         {firstLetterName}
@@ -107,10 +112,13 @@ const MainView = (props) => {
                     handleClick={props.handleClick} 
                     isMenuOpened={props.isMenuOpened}
                     ideas={props.ideas}
+                    userHasRegistered={props.userHasRegistered}
+                    userHasSubscribed={props.userHasSubscribed}
                     ideaSelected={props.ideaSelected}
                     showInfoIdea={props.showInfoIdea}
                     handleDeleteItem={props.handleDeleteItem}
-                    handleEditItem={props.handleEditItem} />
+                    handleEditItem={props.handleEditItem}
+                     />
                 </Col>
             </Row>
         </Col>          

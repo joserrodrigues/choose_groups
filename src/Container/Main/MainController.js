@@ -17,6 +17,8 @@ const MainController = () => {
     const [ ideaSelected, setIdeaSelected ] = useState(null);
     const [ showInfoIdea, setShowInfoIdea ] = useState(false);
     const [ showInitialModal, setShowInitialModal ] = useState(false);
+    const [ userHasRegistered, setUserHasRegistered ] = useState(false);
+    const [ userHasSubscribed, setUserHasSubscribed ] = useState(false);
 
     const [popoverOpenUserInfo, setPopoverOpenUserInfo] = useState(false);
 
@@ -37,9 +39,14 @@ const MainController = () => {
     }
 
     useEffect(() => {
-        mainModel.getIdeaInfo(changeIdeaCallBack);
         console.log("Olhando Rubens");
-        console.log(localStorage.getItem("user_rm"));
+        console.log(localStorage.getItem("user_rm"))
+        let userRm = localStorage.getItem("user_rm");
+        if(userRm === null || userRm === undefined){
+            userRm = 0;
+        }
+        mainModel.getIdeaInfo(userRm, changeIdeaCallBack);
+        ;
         if(localStorage.getItem("user_rm") !== null){
             setShowInitialModal(false); 
         } else {
@@ -48,12 +55,16 @@ const MainController = () => {
 
     }, [])
     
-    const changeIdeaCallBack = ( newIdeas ) => {
+    const changeIdeaCallBack = ( newIdeas, hasOwnIdeas, hasIdeasSubscribed ) => {
         newIdeas = orderBy(newIdeas, ['create_time'] , ['desc'])
 
         setIdeas(newIdeas);
         let showIdeaRm = localStorage.getItem("showIdea_uid");
         let showIdeaUpdate = localStorage.getItem("showIdea_update");
+
+        console.log ( " Check Ideas = " + hasOwnIdeas + " - " + hasIdeasSubscribed);
+        setUserHasRegistered(hasOwnIdeas);
+        setUserHasSubscribed(hasIdeasSubscribed);
         console.log(newIdeas);
 
         if(showIdeaRm !== 0){
@@ -73,9 +84,18 @@ const MainController = () => {
     }
     
     const handleDeleteItem = (idea) => {
+        let message = 'Deseja realmente deletar a ideia ' + idea.title+'?';
+
+        if(idea.users.length > 1){
+            let usuarios = " usuários cadastrados";
+            if(idea.users.length === 2){
+                usuarios = " usurio cadastrado";
+            }
+            message += ' Há '+(idea.users.length -1)+usuarios+' nessa idéia.';
+        }
         confirmAlert({
             title: 'Deletar Ideia',
-            message: 'Deseja realmente deletar a ideia ' + idea.title+'?',
+            message: message,
             buttons: [
               {
                 label: 'Sim',
@@ -100,6 +120,11 @@ const MainController = () => {
     const closeInitialModal = (open) => {
         setShowInitialModal(open);
         setPopoverOpenUserInfo(false);
+        let userRm = localStorage.getItem("user_rm");
+        if(userRm === null || userRm === undefined){
+            userRm = 0;
+        }
+        mainModel.getIdeaInfo(userRm, changeIdeaCallBack);
     }
 
     const changeSearchBar = (search) => {
@@ -136,6 +161,8 @@ const MainController = () => {
             ideaSelected={ideaSelected}
             showInfoIdea={showInfoIdea}
             showInitialModal={showInitialModal}
+            userHasRegistered={userHasRegistered}
+            userHasSubscribed={userHasSubscribed}
             handleDeleteItem={handleDeleteItem}
             handleEditItem={handleEditItem}
             closeInitialModal={closeInitialModal}

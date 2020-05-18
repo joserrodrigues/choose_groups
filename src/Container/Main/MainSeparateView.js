@@ -17,7 +17,10 @@ const MainSeparateView = (props) => {
     } else {
       sidePage = <DetailInfoController
           ideaSelected={props.ideaSelected}
-          handleClick={props.handleClick}  />
+          handleClick={props.handleClick}
+          userHasRegistered={props.userHasRegistered}
+          userHasSubscribed={props.userHasSubscribed}
+          />
     }
     
     const { innerWidth: width } = window;

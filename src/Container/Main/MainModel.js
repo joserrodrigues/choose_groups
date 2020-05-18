@@ -2,13 +2,22 @@
 import {db} from "../../utils/Firestore";
 
 class MainModel {
-    getIdeaInfo = (callback) => {
+    getIdeaInfo = (currentRM, callback) => {
         db.collection("ideas")
         .onSnapshot(function(snapshot) {
             var ideas = [];
+            let hasOwnIdeas = false;
+            let hasIdeasSubscribed = false;
+
             snapshot.forEach(function(doc) {
                 let usersIdea = [];
+                let isCurrentIdeaSubscribed = false;
                 doc.data().users.forEach(function(user){
+                    console.log(user);
+                    if(currentRM === user.rm){
+                        hasIdeasSubscribed = true;
+                        isCurrentIdeaSubscribed = true;
+                    }
                     usersIdea.push({
                         name: user.name,
                         email: user.email,
@@ -17,6 +26,10 @@ class MainModel {
                         owner: user.owner,                        
                     })
                 });
+
+                if(currentRM === doc.data().owner_rm){
+                    hasOwnIdeas = true;
+                }
                 ideas.push({
                     uid: doc.id,
                     owner_name: doc.data().owner_name,
@@ -27,6 +40,7 @@ class MainModel {
                     update_time: doc.data().update_time,
                     title: doc.data().title,
                     description: doc.data().description,
+                    isCurrentIdeaSubscribed: isCurrentIdeaSubscribed,
                     type: {
                         id: doc.data().type.id,
                         name: doc.data().type.name,
@@ -34,7 +48,7 @@ class MainModel {
                     users: usersIdea,
                 });
             });
-            callback(ideas);
+            callback(ideas, hasOwnIdeas, hasIdeasSubscribed);
         });
     }
 

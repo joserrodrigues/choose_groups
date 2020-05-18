@@ -5,7 +5,7 @@ import { } from './Cards.css'
 import CustomButton from '../Button/CustomButton'
 
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { faTrashAlt, faEdit } from '@fortawesome/free-regular-svg-icons'
+import { faTrashAlt, faEdit , faLightbulb } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import renderIf from 'render-if'
 
@@ -14,18 +14,22 @@ const Cards = (props) => {
     let typeName = typeIdeas.getTypeName(props.idea.type.id);
     let icon = typeIdeas.getIcon(props.idea.type.id);
     let allowEdit = props.idea.owner_rm === localStorage.getItem("user_rm");
+    let cardSelectedClass = "";
+    if(props.idea.isCurrentIdeaSubscribed){
+        cardSelectedClass = "cardSelect";
+    }
     
     return (
         <div>
         <Card key={props.idea.uid}>
-            <CardBody className='cardBody'>
+            <CardBody className='cardBody cardSelected'>
                 <Row>
-                    <Col md='12' className='titleCard'>
+                    <Col md='12' className={'titleCard ' + cardSelectedClass} >
                         {props.idea.title}
                     </Col>
                 </Row>
                 <Row>
-                    <Col md='12' className='subtitleCard'>
+                    <Col md='12' className={'subtitleCard ' }>
                         {props.idea.description}
                     </Col>
                 </Row>
@@ -49,13 +53,23 @@ const Cards = (props) => {
                                 </Col>
                             </Row>
                         ))}   
-                        {renderIf(!allowEdit)(() => (
-                            <Row className="rowCardButtons">
+                        {renderIf(!allowEdit && !props.idea.isCurrentIdeaSubscribed)(() => (
+                            <Row className={'rowCardButtons ' + cardSelectedClass}>
                                 <Col md="12" className="divIconCard">
-                                    <FontAwesomeIcon icon={icon} className="iconCard"/>
+                                    <FontAwesomeIcon icon={icon} className={'iconCard ' + cardSelectedClass}/>
                                 </Col>
-                                <Col md="12" className="CardTypeName">
+                                <Col md="12" className={'CardTypeName ' + cardSelectedClass}>
                                     {typeName}
+                                </Col>
+                            </Row>
+                        ))}  
+                        {renderIf(!allowEdit && props.idea.isCurrentIdeaSubscribed)(() => (
+                            <Row className={'rowCardButtons ' + cardSelectedClass}>
+                                <Col md="12" className="divIconCard">
+                                    <FontAwesomeIcon icon={faLightbulb} className={'iconCard ' + cardSelectedClass}/>
+                                </Col>
+                                <Col md="12" className={'CardTypeName ' + cardSelectedClass}>
+                                    Inscrito
                                 </Col>
                             </Row>
                         ))}  

@@ -23,6 +23,10 @@
     -webkit-box-orient: vertical;
 }
 
+.cardSelect {
+    color: #ED145B !important;
+}
+
 .subtitleCard{
     font-family: Gotham-book !important;    
     color: #91A3AD;

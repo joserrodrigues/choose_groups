@@ -1,6 +1,6 @@
 
-import React, {useEffect} from 'react'
-import { Row, Col, Container, Alert, Button } from 'reactstrap'
+import React  from 'react'
+import { Row, Col, Container, Alert } from 'reactstrap'
 import ReactLoading from 'react-loading';
 import { } from './DetailInfoView.css'
 import CustomButton from '../../Component/Button/CustomButton';
@@ -14,7 +14,11 @@ const DetailInfoView = (props) => {
     let currentRm = localStorage.getItem("user_rm");
     let sendInfo = null;
     let hasSubscribed = false;
+    let userCanSubscribeIdeas = true;
 
+    if(props.userHasRegistered || props.userHasSubscribed){
+        userCanSubscribeIdeas = false;
+    }
 
     let users = props.ideaSelected.users.map((user) => {
         let buttonGoOut = null;      
@@ -64,7 +68,7 @@ const DetailInfoView = (props) => {
         );
     } else {
         if(props.ideaSelected.owner_rm !== currentRm && !hasSubscribed && 
-            props.ideaSelected.users.length < maxPersonGroup){
+            props.ideaSelected.users.length < maxPersonGroup && userCanSubscribeIdeas){
             sendInfo = (
                 <Row>
                     <Col md='12' className="divButtonDetailInfo" >
