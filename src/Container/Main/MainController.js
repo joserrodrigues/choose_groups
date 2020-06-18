@@ -46,7 +46,6 @@ const MainController = () => {
             userRm = 0;
         }
         mainModel.getIdeaInfo(userRm, changeIdeaCallBack);
-        ;
         if(localStorage.getItem("user_rm") !== null){
             setShowInitialModal(false); 
         } else {
@@ -65,8 +64,6 @@ const MainController = () => {
         console.log ( " Check Ideas = " + hasOwnIdeas + " - " + hasIdeasSubscribed);
         setUserHasRegistered(hasOwnIdeas);
         setUserHasSubscribed(hasIdeasSubscribed);
-        console.log(newIdeas);
-
         if(showIdeaRm !== 0){
             newIdeas.forEach(element => {
                 if(element.uid === showIdeaRm && 
@@ -89,7 +86,7 @@ const MainController = () => {
         if(idea.users.length > 1){
             let usuarios = " usuários cadastrados";
             if(idea.users.length === 2){
-                usuarios = " usurio cadastrado";
+                usuarios = " usuário cadastrado";
             }
             message += ' Há '+(idea.users.length -1)+usuarios+' nessa idéia.';
         }

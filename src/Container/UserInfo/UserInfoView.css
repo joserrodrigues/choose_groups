@@ -21,3 +21,42 @@
 .enterModal .titleModal{
     margin-bottom: 20px;
 }
+
+.userInfo .comboBox {
+    width: 100%;
+    height: 38px;
+}
+
+.userInfo .form-control {
+    border-radius: 0;
+}
+
+.userInfo .form-group{
+    width: 100%;
+}
+
+.combobox {
+    border-radius: 0;
+    font-size: 15px;
+}
+
+.userInfo .comboBox input {
+    height: 36px;
+    border-radius: 0;
+    font-size: 15px;
+}
+.userInfo .comboBox .rw-widget-container {
+    border-radius: 0;
+}
+
+.userInfo .input-group-prepend{
+    height: 37px;
+}
+
+.fieldClass .invalid-feedback {
+    margin-left: 0px;
+}
+
+.userInfo .fieldClass {
+    margin-bottom: 0;
+}

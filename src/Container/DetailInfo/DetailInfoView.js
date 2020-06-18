@@ -8,7 +8,12 @@ import { faTimes, faUsers } from '@fortawesome/free-solid-svg-icons';
 import TypeIdeas from '../../utils/TypeIdeas';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {maxPersonGroup } from '../../utils/Constants'
-
+import {
+  faEnvelope,
+  faGraduationCap,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import renderIf from 'render-if';
 const DetailInfoView = (props) => {
 
     let currentRm = localStorage.getItem("user_rm");
@@ -20,9 +25,15 @@ const DetailInfoView = (props) => {
         userCanSubscribeIdeas = false;
     }
 
+    props.ideaSelected.users.map((user) => {
+      if(currentRm === user.rm){
+        hasSubscribed = true;
+      }
+    });
+
     let users = props.ideaSelected.users.map((user) => {
         let buttonGoOut = null;      
-        if(currentRm === user.rm && user.owner === 0){
+        if(currentRm === user.rm){
             if(props.isLoadingGoOut){
                 buttonGoOut = 
                     <ReactLoading type={"spinningBubbles"} color={'#ED145B'} height={50} width={50}/> 
@@ -33,28 +44,53 @@ const DetailInfoView = (props) => {
                     text="Sair"
                     onClick={() => props.unSubscribeIdea()}/>    
             }
-            hasSubscribed = true;
         }
         return (
-            <Row key={user.rm}>
-                <Col md="9" xs="8" lg="8">
-                    <Row>
-                        <Col md="12" className="descInfoDetailInfoName">{user.name} </Col>
-                        <Col md="12" className="descInfoDetailInfoGrade">{user.grade} </Col>
-                    </Row>
+          <Row key={user.rm}>
+            <Col md="9" xs="8" lg="8">
+              <Row>
+                <Col md="12" className="descInfoDetailInfoName">
+                  {user.name}
                 </Col>
-                <Col md="3" xs="4" lg="4">
-                    <Row style={{height: '100%'}}>
-                        <Col md="12" className="buttonGoOutDiv">
-                            {buttonGoOut}
-                        </Col>
-                        
-                    </Row>
+                <Col md="12" className="descInfoDetailInfoGrade">
+                  <FontAwesomeIcon
+                    icon={faGraduationCap}
+                    style={{ marginRight: "10px" }}
+                  />
+                  {user.grade}
                 </Col>
-                <Col md="12" className="descInfoDetailInfoLineDiv">
-                            <hr className="descInfoDetailInfoLine"></hr>
+                {renderIf(hasSubscribed)(() => (
+                  <Col md="12" className="descInfoDetailInfoGrade">
+                    <FontAwesomeIcon
+                      icon={faPhone}
+                      style={{ marginRight: "10px" }}
+                    />
+                    {user.phone}
+                  </Col>
+                ))}
+
+                {renderIf(hasSubscribed)(() => (
+                  <Col md="12" className="descInfoDetailInfoGrade">
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      style={{ marginRight: "10px" }}
+                    />
+                    {user.email}
+                  </Col>
+                ))}
+              </Row>
+            </Col>
+            <Col md="3" xs="4" lg="4">
+              <Row style={{ height: "100%" }}>
+                <Col md="12" className="buttonGoOutDiv">
+                  {buttonGoOut}
                 </Col>
-            </Row>                
+              </Row>
+            </Col>
+            <Col md="12" className="descInfoDetailInfoLineDiv">
+              <hr className="descInfoDetailInfoLine"></hr>
+            </Col>
+          </Row>
         );
     })
 
@@ -109,60 +145,64 @@ const DetailInfoView = (props) => {
     let icon = typeIdeas.getIcon(props.ideaSelected.type.id);
 
     return (
-        <div style={{height: '100%'}}>
-        <Container  className="containerDetailInfo">     
-            {alertInfo}            
-            <Row className="align-items-center" style={{ height: "100%"}} >
-                <Col md='12'>
-                    <Row>
-                        <Col md='12' className='closeButtonAddInfo'>
-                            <CustomButton 
-                                
-                                icon={faTimes}
-                                text=""
-                                onClick={() => props.handleClick(null)}/>
-                        </Col>
-                    </Row>   
-                    <Row>
-                        <Col md="12">
-                            <div className="titleInfoDetailInfo">Título</div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12" className="">{props.ideaSelected.title}</Col>
-                    </Row>    
-                    <Row>
-                        <Col md="12">
-                            <div className="titleInfoDetailInfo">Descrição</div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12" className="descInfoDetailInfo">{props.ideaSelected.description}</Col>
-                    </Row>    
-                    <Row>
-                        <Col md="12">
-                            <div className="titleInfoDetailInfo">Tipo Startup</div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md="12" className="">
-                            <FontAwesomeIcon icon={icon} className="iconDetailInfo" />
-                            {props.ideaSelected.type.name}
-                        </Col>
-                    </Row>    
-                    <Row>
-                        <Col md="12">
-                            <div className="titleInfoDetailInfo">Membros</div>
-                        </Col>
-                    </Row>
-                     {users}
-                    <Row>
-                        <Col md="12">{sendInfo}</Col>
-                    </Row>    
+      <div style={{ height: "100%" }}>
+        <Container className="containerDetailInfo">
+          {alertInfo}
+          <Row className="align-items-center" style={{ height: "100%" }}>
+            <Col md="12">
+              <Row>
+                <Col md="12" className="closeButtonAddInfo">
+                  <CustomButton
+                    icon={faTimes}
+                    text=""
+                    onClick={() => props.handleClick(null)}
+                  />
                 </Col>
-            </Row>                            
+              </Row>
+              <Row>
+                <Col md="12">
+                  <div className="titleInfoDetailInfo">Título</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12" className="textTitleDetailInfo">
+                  {props.ideaSelected.title}
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12">
+                  <div className="titleInfoDetailInfo">Descrição</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12" className="descInfoDetailInfo">
+                  {props.ideaSelected.description}
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12">
+                  <div className="titleInfoDetailInfo">Tipo Startup</div>
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12" className="">
+                  <FontAwesomeIcon icon={icon} className="iconDetailInfo" />
+                  {props.ideaSelected.type.name}
+                </Col>
+              </Row>
+              <Row>
+                <Col md="12">
+                  <div className="titleInfoDetailInfo">Membros</div>
+                </Col>
+              </Row>
+              {users}
+              <Row>
+                <Col md="12">{sendInfo}</Col>
+              </Row>
+            </Col>
+          </Row>
         </Container>
-        </div>    
-    )
+      </div>
+    );
 }
 export default DetailInfoView

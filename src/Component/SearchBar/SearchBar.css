@@ -1,12 +1,12 @@
 .searchbar{
     width: 400px !important;
     margin-right: 30px;    
-    height: 44px;
+    height: 42px;
     font-family: Gotham !important;
 }
 
 .searchBarText{
-    height: 44px !important;
+    height: 42px !important;
     font-size: 16px !important;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .searchBarButtonDropDown:hover{
-    color: #444 !important;
+    color: #fff !important;
     text-decoration: underline;
 }
 .searchBarButtonDropDown:active{

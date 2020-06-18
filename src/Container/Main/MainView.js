@@ -64,7 +64,7 @@ const MainView = (props) => {
                         {renderIf(!props.userHasRegistered && !props.userHasSubscribed)(() => (
                             <CustomButton 
                               icon={faLightbulb}
-                              text="Nova Ideia"
+                              text="Nova Oportunidade"
                               onClick={() => props.handleClick(null)}
                               className="buttonNewIdea"/>
                         ))}

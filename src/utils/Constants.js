@@ -1,2 +1,2 @@
-const maxPersonGroup = 2;
+const maxPersonGroup = 4;
 export {maxPersonGroup}

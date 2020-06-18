@@ -32,6 +32,7 @@
     font-family: Gotham-book !important;
     background-color: #000 !important;
     color: #91A3AD !important;
+    word-break: break-word;
 }
 
 .react-confirm-alert-body > h1{
@@ -47,8 +48,11 @@
 }
 
 .react-confirm-alert-button-group > button:hover{
-    color: #444 !important;
-    text-decoration: underline;
+    color: #fff !important;
+}
+
+.react-confirm-alert-button-group > button:active{
+    color: #ccc !important;
 }
 
 .sidePageDiv {
@@ -85,7 +89,7 @@
 @media (max-width: 1025px) {
 
     .userInfoDiv .customButton{
-        font-size: 11px !important;
+        font-size: 10px !important;
         height: 35px;
     }
 }
@@ -101,8 +105,8 @@
 .PopupName{
     background-color: #ED145B;
     color: #151819;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     margin-left: 15px;
     text-align: center;
     display: flex;
@@ -145,14 +149,12 @@
     color: black !important;
     height: 25px;
     padding-top: 0px !important;
+    font-weight: bold !important;
 }
 
 .buttonLogoutUser:hover{
-    color: #444 !important;
-    text-decoration: underline;
+    color: #ffffff !important;
 }
 .buttonLogoutUser:active{
     color: #ccc !important;
-    text-decoration: underline;
 }
-

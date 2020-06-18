@@ -9,7 +9,9 @@ const AddInfoController = (props) => {
     const [ isSuccess, setIsSuccess ] = useState(0);
     const [ errorInfo, setErrorInfo ] = useState('');
     const [ choseTypeIdea, setChoseTypeIdea ] = useState(0);
-    const [ choseTypeIdeaName, setChoseTypeIdeaName ] = useState("Escolha o tipo de Startup");
+    const [choseTypeIdeaName, setChoseTypeIdeaName] = useState(
+      "Qual área de atuação da sua startup?"
+    );
     const [ typeIdeaError, setTypeIdeaError ] = useState(false);
 
 
@@ -27,7 +29,7 @@ const AddInfoController = (props) => {
             setChoseTypeIdeaName(props.editIdea.type.name);
         } else {
             setChoseTypeIdea(0);
-            setChoseTypeIdeaName("Escolha o tipo de Startup");
+            setChoseTypeIdeaName("Qual área de atuação da sua startup?");
         }
     }, [props.editIdea]); // Only re-run the effect if count changes
       

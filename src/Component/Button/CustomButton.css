@@ -1,10 +1,8 @@
 .customButton:hover{
-    color: #444 !important;
-    text-decoration: underline;
+    color: #fff !important;
 }
 .customButton:active{
     color: #ccc !important;
-    text-decoration: underline;
 }
 
 .customButton .btn {

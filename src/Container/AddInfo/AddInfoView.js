@@ -59,13 +59,13 @@ const AddInfoView = (props) => {
     if(props.isSuccess === 1){
         alertInfo = (
             <Alert color="success">
-                Idéia salva com sucesso
+                Oportunidade salva com sucesso
             </Alert>
         )        
     } else if(props.isSuccess === 2){
         alertInfo = (
             <Alert color="danger">
-                Erro ao salvar a ideia {props.errorInfo}
+                Erro ao salvar a oportunidade {props.errorInfo}
             </Alert>
         )
     }
@@ -88,25 +88,31 @@ const AddInfoView = (props) => {
     }
     
     return (
-        <Container  className="containerAddInfo">
-            {alertInfo}
-            <Row className="align-items-center" style={{ height: "100%"}}>
-                <Col md='12'>
-                    <Row>
-                        <Col md='12' className='closeButtonAddInfo'>
-                            <CustomButton 
-                                icon={faTimes}
-                                text=""
-                                onClick={() => props.handleClick(null)}/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md='12' className='titleAddInfo'>
-                            Insira aqui a sua idéia para que outras pessoas se cadastrem no seu grupo
-                        </Col>
-                    </Row>
-                    <AvForm className="hidden" onValidSubmit={props.onValidSubmit} ref={c => (form = c)} >
-                    {/*                         
+      <Container className="containerAddInfo">
+        {alertInfo}
+        <Row className="align-items-center" style={{ height: "100%" }}>
+          <Col md="12">
+            <Row>
+              <Col md="12" className="closeButtonAddInfo">
+                <CustomButton
+                  icon={faTimes}
+                  text=""
+                  onClick={() => props.handleClick(null)}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col md="12" className="titleAddInfo">
+                Insira aqui o problema que você quer resolver para que outras
+                pessoas se cadastrem no seu grupo
+              </Col>
+            </Row>
+            <AvForm
+              className="hidden"
+              onValidSubmit={props.onValidSubmit}
+              ref={(c) => (form = c)}
+            >
+              {/*                         
                         <AvGroup className="input-group">
                             <InputGroupAddon addonType="prepend">
                                 <span className="input-group-text">
@@ -168,50 +174,49 @@ const AddInfoView = (props) => {
                             <AvFeedback>Favor preencher um e-mail válido</AvFeedback>
                         </AvGroup>
                         */}
-                        <AvGroup className="input-group">
-                            <AvInput
-                                type="text"
-                                name="title"
-                                minLength={2}
-                                placeholder="Título"
-                                value={title}
-                                required
-                            />
-                            <AvFeedback>Favor preencher o título da idéia</AvFeedback>
-                        </AvGroup> 
-                        <AvGroup className="input-group">
-                            <AvInput
-                                type="textarea"
-                                name="description"
-                                minLength={2}
-                                placeholder="Descrição"
-                                value={description}
-                                style={{ height: '120px'}}
-                                required
-                            />
-                            <AvFeedback>Favor preencher a descrição da idéia</AvFeedback>
-                        </AvGroup>
-                        
-                        <Combobox
-                            name="combobox"
-                            className="comboBox"
-                            data={radioItems}
-                            value={props.choseTypeIdeaName}
-                            onChange={props.onChangeTypeStartup}
-                        />                    
-                        {renderIf(props.typeIdeaError)(() => (
-                            <div className="messageError">Favor escolher um tipo de startup</div>
-                        ))}                    
-                        
-                        <FormGroup className="buttonDiv">
-                            {sendInfo}
-                        </FormGroup>
-                    </AvForm>
-                </Col>
-            </Row>
-        </Container>
-        
-    )
+              <AvGroup className="input-group">
+                <AvInput
+                  type="text"
+                  name="title"
+                  minLength={2}
+                  placeholder="Título"
+                  value={title}
+                  required
+                />
+                <AvFeedback>Favor preencher o título da idéia</AvFeedback>
+              </AvGroup>
+              <AvGroup className="input-group">
+                <AvInput
+                  type="textarea"
+                  name="description"
+                  minLength={2}
+                  placeholder="Descrição"
+                  value={description}
+                  style={{ height: "120px" }}
+                  required
+                />
+                <AvFeedback>Favor preencher a descrição da idéia</AvFeedback>
+              </AvGroup>
+
+              <Combobox
+                name="combobox"
+                className="comboBox"
+                data={radioItems}
+                value={props.choseTypeIdeaName}
+                onChange={props.onChangeTypeStartup}
+              />
+              {renderIf(props.typeIdeaError)(() => (
+                <div className="messageError">
+                  Favor escolher um tipo de startup
+                </div>
+              ))}
+
+              <FormGroup className="buttonDiv">{sendInfo}</FormGroup>
+            </AvForm>
+          </Col>
+        </Row>
+      </Container>
+    );
 }
 
 export default AddInfoView

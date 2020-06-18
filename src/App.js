@@ -5,6 +5,8 @@ import {Container} from 'reactstrap';
 
 import './App.css';
 import MainController from './Container/Main/MainController';
+import ReportController from './Container/Report/ReportController'
+import NoticeController from './Container/Notice/NoticeController';
 
 function App() {
   
@@ -19,7 +21,9 @@ function App() {
   const routes = (
     <Container fluid={true} className="mainContainer">
       <Switch>
-        <Route path="/" exact component={MainController} />        
+        <Route path="/" exact component={MainController} />
+        {/* <Route path="/report" exact component={ReportController} /> */}
+        {/* <Route path="/" exact component={NoticeController} /> */}
         <Redirect to="/" />
       </Switch>
     </Container>

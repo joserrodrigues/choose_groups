@@ -10,35 +10,41 @@ class AddInfoModel {
 
         let name = localStorage.getItem("user_name");
         let email = localStorage.getItem("user_email");
+        let phone = localStorage.getItem("user_phone");
         let rm = localStorage.getItem("user_rm");
         let grade = localStorage.getItem("user_grade");
   
 
-        db.collection('ideas').add({
+        db.collection("ideas")
+          .add({
             owner_name: name,
             owner_email: email,
+            owner_phone: phone,
             owner_grade: grade,
             owner_rm: rm,
             title: values.title,
-            description: values.description,            
+            description: values.description,
             type: {
-                id: choseTypeIdea,
-                name: typeIdeaName,
+              id: choseTypeIdea,
+              name: typeIdeaName,
             },
-            users: [{
-              name: name,
-              email: email,
-              grade: grade,
-              rm: rm,
-              owner: 1,
-            }],
+            users: [
+              {
+                name: name,
+                email: email,
+                phone: phone,
+                grade: grade,
+                rm: rm,
+                owner: 1,
+              },
+            ],
             create_time: moment().format("YYYY-MM-DD HH:mm:ss"),
             update_time: moment().format("YYYY-MM-DD HH:mm:ss"),
           })
-          .then(function() {
+          .then(function () {
             callback(true, null);
           })
-          .catch(function(error) {
+          .catch(function (error) {
             callback(false, error);
           });   
     }
@@ -50,6 +56,7 @@ class AddInfoModel {
 
       let name = localStorage.getItem("user_name");
       let email = localStorage.getItem("user_email");
+      let phone = localStorage.getItem("user_phone");
       let rm = localStorage.getItem("user_rm");
       let grade = localStorage.getItem("user_grade");
 
@@ -61,6 +68,7 @@ class AddInfoModel {
       newUsers.push({
         name: name,
         email: email,
+        phone: phone,
         grade: grade,
         rm: rm,
         owner: 1,
@@ -76,26 +84,29 @@ class AddInfoModel {
 
       console.log(newUsers);
       //Update Info      
-      db.collection("ideas").doc(previousIdea.uid).update({
+      db.collection("ideas")
+        .doc(previousIdea.uid)
+        .update({
           owner_name: name,
           owner_email: email,
+          owner_phone: phone,
           owner_grade: grade,
           owner_rm: rm,
           title: values.title,
           description: values.description,
           update_time: moment().format("YYYY-MM-DD HH:mm:ss"),
           type: {
-              id: choseTypeIdea,
-              name: typeIdeaName,
+            id: choseTypeIdea,
+            name: typeIdeaName,
           },
           users: newUsers,
-      })
-      .then(function() {
-        callback(true, null);
-      })
-      .catch(function(error) {
-        callback(false, error);
-      });
+        })
+        .then(function () {
+          callback(true, null);
+        })
+        .catch(function (error) {
+          callback(false, error);
+        });
   }
 
 }
