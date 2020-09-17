@@ -23,7 +23,7 @@ const AddInfoController = (props) => {
 
     useEffect(() => {
         console.log(" Idea has change ");
-        console.log(props.editIdea);
+        //console.log(props.editIdea);
         if(isEditing){
             setChoseTypeIdea(props.editIdea.type.id);        
             setChoseTypeIdeaName(props.editIdea.type.name);
@@ -41,8 +41,8 @@ const AddInfoController = (props) => {
     }
 
     const onValidSubmit = (event, values) => {        
-        console.log(values);
-        console.log(choseTypeIdea);
+        // console.log(values);
+        // console.log(choseTypeIdea);
 
         if(choseTypeIdea === 0){
             setTypeIdeaError(true);
@@ -66,7 +66,7 @@ const AddInfoController = (props) => {
         } else {
             setIsSuccess(1);            
         }
-        console.log( "Retorno = " + isSuccess + " error " + error);
+        // console.log( "Retorno = " + isSuccess + " error " + error);
     
         setTimeout(() => {            
             setIsSuccess(0);   

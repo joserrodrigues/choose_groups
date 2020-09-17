@@ -36,7 +36,7 @@ const MainView = (props) => {
       placement = "left";
     }
 
-    console.log ( " Check Ideas = " + props.userHasSubscribed + " - " + props.userHasRegistered);
+    // console.log ( " Check Ideas = " + props.userHasSubscribed + " - " + props.userHasRegistered);
 
     return (
       <Row>

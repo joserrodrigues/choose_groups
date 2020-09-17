@@ -31,7 +31,7 @@ const DetailInfoController = (props) => {
         } else {
             setIsSuccess(1);            
         }
-        console.log( "Retorno = " + isSuccess + " error " + error);
+        // console.log( "Retorno = " + isSuccess + " error " + error);
     
         setTimeout(() => {            
             setIsSuccess(0);    

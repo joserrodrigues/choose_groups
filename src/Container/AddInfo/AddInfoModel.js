@@ -6,7 +6,7 @@ class AddInfoModel {
     addIdea = (values, choseTypeIdea, callback) => {
         const typeIdeas = new TypeIdeas();
         const typeIdeaName = typeIdeas.getTypeName(choseTypeIdea);
-        console.log(typeIdeaName + " - " + values.type);
+        // console.log(typeIdeaName + " - " + values.type);
 
         let name = localStorage.getItem("user_name");
         let email = localStorage.getItem("user_email");
@@ -52,7 +52,7 @@ class AddInfoModel {
     saveIdea = (values, choseTypeIdea, previousIdea, callback) => {
       const typeIdeas = new TypeIdeas();
       const typeIdeaName = typeIdeas.getTypeName(choseTypeIdea);
-      console.log(typeIdeaName + " - " + values.type);
+      // console.log(typeIdeaName + " - " + values.type);
 
       let name = localStorage.getItem("user_name");
       let email = localStorage.getItem("user_email");
@@ -82,7 +82,7 @@ class AddInfoModel {
         }
       });
 
-      console.log(newUsers);
+      // console.log(newUsers);
       //Update Info      
       db.collection("ideas")
         .doc(previousIdea.uid)

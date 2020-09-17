@@ -52,7 +52,7 @@ const UserInfoView = (props) => {
     // clearTimeout(this.timeout);
 
     // simulate network call
-    console.log(value);
+    // console.log(value);
     
     cb(!value.includes("_") && value !== "");
   });

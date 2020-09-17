@@ -37,7 +37,7 @@ class DetailInfoModel {
           rm: rm,
           owner: 0,
         });      
-        console.log(newUsers);
+        // console.log(newUsers);
 
         //Update Info      
         dbIdea.update({

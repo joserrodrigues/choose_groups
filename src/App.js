@@ -11,9 +11,9 @@ import NoticeController from './Container/Notice/NoticeController';
 function App() {
   
   // const result = dotenv.config()
-  console.log("URL = ")
-  console.log(process.env.apiKey)
-  console.log(process.env.REACT_APP_databaseURL)
+  //console.log("URL = ")
+  //console.log(process.env.apiKey)
+  //console.log(process.env.REACT_APP_databaseURL)
 
   const bgInfo = "cr-app mainViewBg";
   const random = parseInt(Math.floor(Math.random() * Math.floor(2)),10)+1;

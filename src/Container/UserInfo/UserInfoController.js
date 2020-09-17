@@ -18,7 +18,7 @@ const UserInfoController = (props) => {
       setGradeNameError(typeIdeaID === 0);
     };    
     const onValidSubmit = (event, values) => {        
-        console.log(values);
+        // console.log(values);
 
         let typeIdeaID = grades.getGradeByName(choseGradeName);
         if(typeIdeaID === 0){

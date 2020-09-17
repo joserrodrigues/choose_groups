@@ -39,8 +39,8 @@ const MainController = () => {
     }
 
     useEffect(() => {
-        console.log("Olhando Rubens");
-        console.log(localStorage.getItem("user_rm"))
+        // console.log("Olhando Rubens");
+        // console.log(localStorage.getItem("user_rm"))
         let userRm = localStorage.getItem("user_rm");
         if(userRm === null || userRm === undefined){
             userRm = 0;
@@ -61,7 +61,7 @@ const MainController = () => {
         let showIdeaRm = localStorage.getItem("showIdea_uid");
         let showIdeaUpdate = localStorage.getItem("showIdea_update");
 
-        console.log ( " Check Ideas = " + hasOwnIdeas + " - " + hasIdeasSubscribed);
+        // console.log ( " Check Ideas = " + hasOwnIdeas + " - " + hasIdeasSubscribed);
         setUserHasRegistered(hasOwnIdeas);
         setUserHasSubscribed(hasIdeasSubscribed);
         if(showIdeaRm !== 0){
@@ -125,7 +125,7 @@ const MainController = () => {
     }
 
     const changeSearchBar = (search) => {
-        console.log(search);
+        // console.log(search);
         setSearchText(search);
         const lowerSearch = search.toLowerCase();
         const filteredIdeas =  filter(ideas, (idea) => {
