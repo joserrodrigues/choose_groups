@@ -25,6 +25,10 @@ const DetailInfoView = (props) => {
         userCanSubscribeIdeas = false;
     }
 
+  if (props.ideaSelected === null || props.ideaSelected === undefined){
+    return;
+  }
+  
     props.ideaSelected.users.map((user) => {
       if(currentRm === user.rm){
         hasSubscribed = true;

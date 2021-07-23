@@ -39,14 +39,14 @@ const NoticeController = (props) => {
                 inscreveram para a formação do grupo.
               </Col>
             </Row>
-            <Row>
+            {/* <Row>
               <Col style={{ marginTop: "20px" }}>
                 O sorteio será realizado no dia {" "}
                 <span style={{ fontWeight: "bold", color: "#ED145B" }}>
                    08/06/2020.
                 </span>
               </Col>
-            </Row>
+            </Row> */}
           </div>
         </ModalBody>
         <ModalFooter>

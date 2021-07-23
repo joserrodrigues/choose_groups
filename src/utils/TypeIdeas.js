@@ -13,7 +13,8 @@ import {
   faLock,
   faGavel,
   faCar,
-  faCity,
+  faCity, faUtensils, faFileSignature
+
 } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -82,7 +83,17 @@ class TypeIdeas {
           icon: faCity,
         });
         this.typeArray.push({
-            id: 13,
+          id: 13,
+          name: "Seguros",
+          icon: faFileSignature,
+        });
+        this.typeArray.push({
+          id: 14,
+          name: "Food Tech",
+          icon: faUtensils,
+        });
+        this.typeArray.push({
+            id: 15,
             name: 'Outro',
             icon: faBuilding
         });

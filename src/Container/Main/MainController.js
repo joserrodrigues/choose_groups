@@ -34,7 +34,10 @@ const MainController = () => {
         }
         
         setIsMenuOpened(!isMenuOpened);
-        setIdeaSelected(idea);
+        if(idea !== null){
+            setIdeaSelected(idea);
+        }
+        
         setShowInfoIdea(idea !== null);
     }
 
