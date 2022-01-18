@@ -1,7 +1,12 @@
-// change the theme
+// // change the theme
+// $theme-colors: (
+//   "info": #ED145B,
+// );
+
 $theme-colors: (
-  "info": #ED145B,
+  "custom-color": #900
 );
 
 // Import Bootstrap and its default variables
-@import '~bootstrap/scss/bootstrap.scss';
+@import "~react-widgets/scss/styles.scss";
+@import '~bootstrap/dist/css/bootstrap.min.css';

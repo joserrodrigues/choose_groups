@@ -3,6 +3,7 @@ import AddInfoView from './AddInfoView'
 
 import AddInfoModel from './AddInfoModel';
 import TypeIdeas from '../../utils/TypeIdeas'
+import * as Yup from "yup";
 
 const AddInfoController = (props) => {
     const [ isLoading, setIsLoading ] = useState(false);
@@ -21,6 +22,14 @@ const AddInfoController = (props) => {
 
     let isEditing = props.editIdea !== null;    
 
+
+    const addIdeaSchema = Yup.object().shape({
+        title: Yup.string().required("Favor preencher o título da idéia"),
+        description: Yup.string().required("Favor preencher a descrição da idéia"),
+        courses: Yup.number().min(1, "Favor escolher um tipo de startup")
+    });
+
+
     useEffect(() => {
         console.log(" Idea has change ");
         //console.log(props.editIdea);
@@ -31,18 +40,19 @@ const AddInfoController = (props) => {
             setChoseTypeIdea(0);
             setChoseTypeIdeaName("Qual área de atuação da sua startup?");
         }
-    }, [props.editIdea]); // Only re-run the effect if count changes
+    }, [props.editIdea, isEditing]); // Only re-run the effect if count changes
+
       
     const onChangeTypeStartup = (value) => {
         let typeIdeaID = typeIdeas.getTypeByName(value);
         setChoseTypeIdea(typeIdeaID);        
         setChoseTypeIdeaName(value);        
-        setTypeIdeaError(typeIdeaID === 0);
+        return typeIdeaID;
     }
 
-    const onValidSubmit = (event, values) => {        
-        // console.log(values);
-        // console.log(choseTypeIdea);
+    const onValidSubmit = (values) => {        
+        console.log(values);
+        console.log(choseTypeIdea);
 
         if(choseTypeIdea === 0){
             setTypeIdeaError(true);
@@ -91,6 +101,7 @@ const AddInfoController = (props) => {
             isEditing={isEditing}
             editIdea={props.editIdea}
             onChangeTypeStartup={onChangeTypeStartup}
+            addIdeaSchema={addIdeaSchema}
         />
         
     )

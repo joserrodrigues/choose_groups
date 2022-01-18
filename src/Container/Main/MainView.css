@@ -1,5 +1,5 @@
 .mainViewBg {
-    background-image: url(/img/background.png);
+    background-image: url(../../Assets//img/background.png);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -8,7 +8,7 @@
 
 @media screen and (orientation:portrait) {
     .mainLoginBg {
-        background-image: url(/img/background.png);
+        background-image: url(../../Assets//img/background.png);
     }
 }
 
@@ -150,6 +150,7 @@
     height: 25px;
     padding-top: 0px !important;
     font-weight: bold !important;
+    background-color: #ED145B !important;
 }
 
 .buttonLogoutUser:hover{

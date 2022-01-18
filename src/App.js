@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {Container} from 'reactstrap';
 
 import './App.css';
@@ -16,25 +16,25 @@ function App() {
   //console.log(process.env.REACT_APP_databaseURL)
 
   const bgInfo = "cr-app mainViewBg";
-  const random = parseInt(Math.floor(Math.random() * Math.floor(2)),10)+1;
+  //const random = parseInt(Math.floor(Math.random() * Math.floor(2)),10)+1;
 
   const routes = (
     <Container fluid={true} className="mainContainer">
-      <Switch>
-        <Route path="/" exact component={MainController} />
-        {/* <Route path="/report" exact component={ReportController} /> */}
-        {/* <Route path="/" exact component={NoticeController} /> */}
-        <Redirect to="/" />
-      </Switch>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" exact element={<MainController />} />
+          {/* <Route path="/report" exact element={<ReportController />} /> */}
+          {/* <Route path="/" exact element={<NoticeController />} /> */}
+      </Routes>
+      </BrowserRouter>
     </Container>
   );
 
   return (
-    <BrowserRouter>
-        <main className={bgInfo}>          
-          {routes}
-        </main>
-    </BrowserRouter>
+    
+    <main className={bgInfo}>          
+      {routes}
+    </main>
   );
 }
 

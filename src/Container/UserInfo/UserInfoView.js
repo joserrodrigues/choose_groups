@@ -6,28 +6,18 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-} from "reactstrap";
+  Row, Col
+} from 'reactstrap';
+import { Formik, Field, ErrorMessage } from "formik";
+
 import InputMask from "react-input-mask";
-import { InputGroupAddon} from 'reactstrap';
-import {
-  AvForm,
-  AvFeedback,
-  AvInput,
-  AvGroup,
-  AvField,
-} from "availity-reactstrap-validation";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEnvelope, faUser, faPaperPlane, faTimes, faGraduationCap, faPhone } from '@fortawesome/free-solid-svg-icons'
+import { faPaperPlane, faTimes } from '@fortawesome/free-solid-svg-icons'
 import CustomButton from '../../Component/Button/CustomButton'
-import { Combobox } from "react-widgets";
-import renderIf from "render-if";
+// import { Combobox } from "react-widgets";
 import { } from './UserInfoView.css'
 
 const UserInfoView = (props) => {
-    let form = React.createRef();
-    const submitForm = () => {
-        form.handleSubmit();
-    }
+
 
     let cancelButton = null
     if(localStorage.getItem("user_rm") !== null){
@@ -40,100 +30,133 @@ const UserInfoView = (props) => {
         ) 
     }
 
-    let radioItems = null;
-    radioItems = props.arrayGrades.map((element) => {
-      return element.name;
-    });
+    // let radioItems = null;
+    // radioItems = props.arrayGrades.map((element) => {
+    //   return element.name;
+    // });
 
-  // debounce to not pound the 'server'
-  const validate = ((value, ctx, input, cb) => {
-
-    // cancel pending 'network call'
-    // clearTimeout(this.timeout);
-
-    // simulate network call
-    // console.log(value);
-    
-    cb(!value.includes("_") && value !== "");
-  });
-
-    return (
-      <div>
-        <Modal isOpen={props.modal} className="enterModal userInfo">
-          <ModalHeader>Bem Vindo ao Choose Group do Startup One</ModalHeader>
-          <ModalBody>
-            <div className="titleModal">
-              Para acessar as ideias, por favor, insira os dados abaixo:
-            </div>
-
-            <AvForm
-              className="hidden"
-              onValidSubmit={props.onValidSubmit}
-              ref={(c) => (form = c)}
-            >
-              <AvGroup className="input-group">
-                <AvInput
-                  name="name"
-                  minLength={3}
-                  placeholder="Nome"
-                  value={""}
-                  required
-                />
-                <AvFeedback>Favor preencher um nome válido</AvFeedback>
-              </AvGroup>
-              <AvGroup className="input-group">
-                <AvInput name="rm" minLength={3} placeholder="RM" required />
-                <AvFeedback>Favor preencher um RM válido</AvFeedback>
-              </AvGroup>
-              <AvGroup className="input-group" md="12">
-                <Combobox
-                  name="combobox"
-                  className="comboBox"
-                  data={radioItems}
-                  value={props.choseGradeName}
-                  onChange={props.onChangeGrade}
-                />
-                {renderIf(props.gradeNameError)(() => (
-                  <div className="messageError">
-                    Favor preencher uma turma válida
+  return (
+    <div>
+        <Formik
+          initialValues={{
+            name: "",
+            rm:"",
+            courseName: "",
+            courses: 0,
+            email: "",
+            phone: ""
+          }}
+          validationSchema={props.addUserSchema}
+          onSubmit={props.onValidSubmit}>
+          {(formik) => {
+          const { errors, touched, submitForm, setFieldValue } = formik;
+            
+            return (
+              <Modal isOpen={props.modal} className="enterModal userInfo">
+                <ModalHeader>Bem Vindo ao Founders' Match do Amplifier</ModalHeader>
+                <ModalBody>
+                  <div className="titleModal">
+                    Para acessar as necessidades das startups, insira os dados abaixo:
                   </div>
-                ))}
-              </AvGroup>
-              <AvGroup className="input-group fieldClass">
-                <AvField
-                  name="email"
-                  type="text"
-                  validate={{ email: true }}
-                  errorMessage="Favor preencher um e-mail válido"
-                  required
-                  placeholder="E-mail"
-                />
-              </AvGroup>
-              <AvGroup className="input-group phone-input fieldClass">
-                <AvField
-                  type="text"
-                  mask="(99) 99999-9999"
-                  maskChar="-"
-                  name="phone"
-                  placeholder="Telefone"
-                  errorMessage="Favor preencher um telefone válido"
-                  validate={{ async: validate }}
-                  className="fieldClass"
-                  tag={[Input, InputMask]}
-                />
-              </AvGroup>
-            </AvForm>
-          </ModalBody>
-          <ModalFooter>
-            {cancelButton}{" "}
-            <CustomButton
-              icon={faPaperPlane}
-              text="Enviar"
-              onClick={() => submitForm()}
-            />
-          </ModalFooter>
-        </Modal>
-      </div>
-    );
+                <Row>
+                  <Col md={12} className='field'>
+                    <Field
+                      type="text"
+                      name="rm"                        
+                      placeholder="RM"
+                      className={errors.name && touched.name ?
+                        "inputError" : "fieldClass"}
+                    />
+                  </Col>
+                  <Col md={12} className="infoErrorBox">
+                    <ErrorMessage name="rm" component="span" className="infoError" />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className='field'>
+                    <Field
+                      type="text"
+                      name="name"                        
+                      placeholder="Nome"
+                      className={errors.name && touched.name ?
+                        "inputError" : "fieldClass"}
+                    />
+                  </Col>
+                  <Col md={12} className="infoErrorBox">
+                    <ErrorMessage name="name" component="span" className="infoError" />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className='field'>
+                      {/* <Combobox
+                        name="combobox"
+                        className="comboBox"
+                        data={radioItems}
+                        value={props.choseGradeName}    
+                        onChange={(value) => {
+                          let typeID = props.onChangeGrade(value);
+                          setFieldValue('courses', typeID);
+                        }}
+                      /> */}
+                      <Field
+                        type="text"
+                        name="courseName"
+                        placeholder="Nome do Curso"
+                        className={errors.email && touched.email ?
+                          "inputError" : "fieldClass"}
+                      />                      
+                  </Col>
+                  <Col md={12} className="infoErrorBox">
+                      <ErrorMessage name="courseName" component="span" className="infoError" />
+                  </Col>
+                </Row>
+                  <Row>
+                    <Col md={12} className='field'>
+                      <Field
+                        type="email"
+                        name="email"
+                        placeholder="E-mail"
+                        className={errors.email && touched.email ?
+                          "inputError" : "fieldClass"}
+                      />
+                    </Col>
+                    <Col md={12} className="infoErrorBox">
+                      <ErrorMessage name="email" component="span" className="infoError" />
+                    </Col>
+                  </Row>                  
+                  <Row>
+                    <Col md={12} className='field'>
+                      <InputMask
+                        type="text"
+                        mask="(99) 99999-9999"
+                        name="phone"
+                        placeholder="Telefone"
+                        onChange={({ target }) => {
+                          setFieldValue('phone', target.value);
+                        }}
+                        className={errors.phone && touched.phone ?
+                          "inputError" : "fieldClass"}
+                        tag={[Input, InputMask]}
+                      />
+                    </Col>
+                    <Col md={12} className="infoErrorBox">
+                      <ErrorMessage name="phone" component="span" className="infoError" />
+                    </Col>
+                  </Row>  
+                </ModalBody>
+                <ModalFooter>
+                  {cancelButton}{" "}
+                  <CustomButton
+                    icon={faPaperPlane}
+                    text="Enviar"
+                    onClick={() => submitForm()}
+                  />
+                </ModalFooter>
+              </Modal>
+            );
+          }}
+        </Formik>
+    </div>
+  );
 }
 export default UserInfoView

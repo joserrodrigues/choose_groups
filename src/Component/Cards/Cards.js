@@ -15,7 +15,9 @@ const Cards = (props) => {
     let typeName = typeIdeas.getTypeName(props.idea.type.id);
     let icon = typeIdeas.getIcon(props.idea.type.id);
     let noUsers = props.idea.users.length;
-    let allowEdit = parseInt(props.idea.owner_rm,10) === parseInt(localStorage.getItem("user_rm"),10);
+    let allowEdit = props.idea.owner_rm === localStorage.getItem("user_rm");
+
+  console.log(props.idea.owner_rm + " ==== " + localStorage.getItem("user_rm"))
 
     let cardSelectedClass = "";
     if(props.idea.isCurrentIdeaSubscribed){

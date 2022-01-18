@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
-import { Button, Row, Col } from 'reactstrap';
+import React from 'react'
+import { Row, Col } from 'reactstrap';
 import Cards from '../../Component/Cards/Cards'
 
 const CardListView = (props) => {
-    const [ count, setCount ] = useState(0);
 
     let cardList = [];
     props.ideas.forEach(idea => {

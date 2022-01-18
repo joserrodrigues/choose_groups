@@ -1,5 +1,7 @@
 import {db} from "../../utils/Firestore";
 import TypeIdeas from '../../utils/TypeIdeas';
+import { doc, updateDoc, collection, addDoc } from "firebase/firestore";
+
 import moment from 'moment';
 
 class AddInfoModel {
@@ -14,9 +16,7 @@ class AddInfoModel {
         let rm = localStorage.getItem("user_rm");
         let grade = localStorage.getItem("user_grade");
   
-
-        db.collection("ideas")
-          .add({
+      addDoc(collection(db, "ideas"), {
             owner_name: name,
             owner_email: email,
             owner_phone: phone,
@@ -40,13 +40,13 @@ class AddInfoModel {
             ],
             create_time: moment().format("YYYY-MM-DD HH:mm:ss"),
             update_time: moment().format("YYYY-MM-DD HH:mm:ss"),
-          })
-          .then(function () {
-            callback(true, null);
-          })
-          .catch(function (error) {
-            callback(false, error);
-          });   
+      })
+      .then(function () {
+        callback(true, null);
+      })
+      .catch(function (error) {
+        callback(false, error);
+      });    
     }
 
     saveIdea = (values, choseTypeIdea, previousIdea, callback) => {
@@ -83,10 +83,8 @@ class AddInfoModel {
       });
 
       // console.log(newUsers);
-      //Update Info      
-      db.collection("ideas")
-        .doc(previousIdea.uid)
-        .update({
+      const ideaDoc = doc(db, "ideas", previousIdea.uid);
+      updateDoc(ideaDoc, {
           owner_name: name,
           owner_email: email,
           owner_phone: phone,
@@ -107,6 +105,30 @@ class AddInfoModel {
         .catch(function (error) {
           callback(false, error);
         });
+      //Update Info      
+      // db.collection("ideas")
+      //   .doc(previousIdea.uid)
+      //   .update({
+      //     owner_name: name,
+      //     owner_email: email,
+      //     owner_phone: phone,
+      //     owner_grade: grade,
+      //     owner_rm: rm,
+      //     title: values.title,
+      //     description: values.description,
+      //     update_time: moment().format("YYYY-MM-DD HH:mm:ss"),
+      //     type: {
+      //       id: choseTypeIdea,
+      //       name: typeIdeaName,
+      //     },
+      //     users: newUsers,
+      //   })
+      //   .then(function () {
+      //     callback(true, null);
+      //   })
+      //   .catch(function (error) {
+      //     callback(false, error);
+      //   });
   }
 
 }

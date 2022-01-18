@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import './custom.scss';
 import './Assets/fonts/GothamHTF-Bold.otf'
 import './Assets/fonts/GothamHTF-Light.otf'
 import './Assets/fonts/GothamHTF-Book.otf'
-import 'react-widgets/lib/scss/react-widgets.scss';
+
+// import 'react-widgets/lib/scss/react-widgets.scss';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import "./custom.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Fragment>
     <App />
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById('root')
 );
 

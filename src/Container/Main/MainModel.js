@@ -1,6 +1,9 @@
 
 import { db } from "../../utils/Firestore";
-import firebase from "firebase";
+import { collection, query, onSnapshot } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
+import { getStorage, ref, uploadString } from "firebase/storage";
+
 import moment from 'moment';
 class MainModel {
 
@@ -9,8 +12,11 @@ class MainModel {
     }
 
     getIdeaInfo = (currentRM, callback) => {
-        db.collection("ideas")
-        .onSnapshot(function(snapshot) {
+
+        
+
+        const q = query(collection(db, "ideas"));
+        onSnapshot(q, (querySnapshot) => {
             var ideas = [];
             let hasOwnIdeas = false;
             let hasIdeasSubscribed = false;
@@ -18,7 +24,7 @@ class MainModel {
 
 
             let info = "[";
-            snapshot.forEach(function(doc) {
+            querySnapshot.forEach(function(doc) {
                 let usersIdea = [];
                 let isCurrentIdeaSubscribed = false;
                 info += JSON.stringify(doc.data()) + ",";
@@ -64,21 +70,19 @@ class MainModel {
             info += "]";
 
             if (parseInt(currentRM,10) === 99999999){
-                var storageRef = firebase.storage().ref();
-                var mountainsRef = storageRef.child(
-                  "database_" + moment().format("Y-MM-DD_H")+ ".txt"
-                );
-                mountainsRef.putString(info).then(function (snapshot) {
-                console.log("Uploaded a raw string!");
-                });                
+                const storage = getStorage();
+                const storageRef = ref(storage, "database_" + moment().format("Y-MM-DD_H") + ".txt");
+                uploadString(storageRef, info).then((snapshot) => {
+                    console.log('Uploaded a raw string!');
+                });             
             }
             callback(ideas, hasOwnIdeas, hasIdeasSubscribed);
 
         });
     }
 
-    deleteIdea = (idea) => {
-        db.collection("ideas").doc(idea.uid).delete().then(function() {
+    deleteIdea = (idea) => {        
+        deleteDoc(doc(db, "ideas", idea.uid)).then(function () {
             console.log("Document successfully deleted!");
         }).catch(function(error) {
             alert("Erro ao remover a idéia: " + error)
@@ -86,13 +90,11 @@ class MainModel {
     }
 
     uploadInfo = (info, name) => {
-        var storageRef = firebase.storage().ref();
-        var mountainsRef = storageRef.child(
-            "info_" + name + ".txt"
-        );
-        mountainsRef.putString(info).then(function (snapshot) {
-            console.log("Uploaded a raw string!");
-        }); 
+        const storage = getStorage();
+        const storageRef = ref(storage, "info_" + name + ".txt");
+        uploadString(storageRef, info).then((snapshot) => {
+            console.log('Uploaded a raw string!');
+        });
     }
 
 }

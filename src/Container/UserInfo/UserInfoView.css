@@ -53,6 +53,22 @@
     height: 37px;
 }
 
+.fieldClass {
+    width: 100%;
+}
+
+.inputError{
+    width: 100%;
+}
+
+.infoError{
+    color: #ED145B;
+}
+
+.infoErrorBox{
+    margin-bottom: 20px;
+}
+
 .fieldClass .invalid-feedback {
     margin-left: 0px;
 }

@@ -29,7 +29,7 @@ const DetailInfoView = (props) => {
     return;
   }
   
-    props.ideaSelected.users.map((user) => {
+    props.ideaSelected.users.forEach((user) => {
       if(currentRm === user.rm){
         hasSubscribed = true;
       }

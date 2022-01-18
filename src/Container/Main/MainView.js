@@ -29,10 +29,10 @@ const MainView = (props) => {
     const { innerWidth: width } = window;
     // console.log(" Width = " + width);
 
-    let logoImg = 'img/Logo.png';
+    let logoImg = 'img/Logo_amp.png';
     let placement = "bottom";
     if(width < 900){
-      logoImg = 'img/Logo_small.png';
+      logoImg = 'img/Logo_small_amp.png';
       placement = "left";
     }
 
@@ -86,7 +86,7 @@ const MainView = (props) => {
                           <Row>
                             <Col className="userInfoButton"
                              onClick={() => props.closeInitialModal(true)}>
-                               <Button color="info" className="buttonLogoutUser">Sair</Button>
+                               <Button className="buttonLogoutUser">Sair</Button>
                              </Col>
                           </Row>
                         </PopoverBody>
