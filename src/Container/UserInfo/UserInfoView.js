@@ -53,7 +53,7 @@ const UserInfoView = (props) => {
             
             return (
               <Modal isOpen={props.modal} className="enterModal userInfo">
-                <ModalHeader>Bem Vindo ao Founders' Match do Amplifier</ModalHeader>
+                <ModalHeader>Bem-vindo ao Founders' Match do Amplifier</ModalHeader>
                 <ModalBody>
                   <div className="titleModal">
                     Para acessar as necessidades das startups, insira os dados abaixo:

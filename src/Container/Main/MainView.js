@@ -10,6 +10,7 @@ import renderIf from 'render-if'
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 
 import { } from './MainView.css'
+import moment from 'moment';
 
 const MainView = (props) => {
 
@@ -36,6 +37,15 @@ const MainView = (props) => {
       placement = "left";
     }
 
+    let hasAddIdea = true;
+    const now = moment();
+    console.log(now);
+    if (now.isAfter('2022-01-23 23:59:59')){
+      hasAddIdea = false;
+      console.log("NO New Idea");
+    } else {
+      console.log("HAS New Idea");
+    }
     // console.log ( " Check Ideas = " + props.userHasSubscribed + " - " + props.userHasRegistered);
 
     return (
@@ -61,7 +71,7 @@ const MainView = (props) => {
                               onChange={props.changeSearchBar}
                             />
                         ))}
-                        {renderIf(!props.userHasRegistered && !props.userHasSubscribed)(() => (
+                        {renderIf(!props.userHasRegistered && !props.userHasSubscribed && hasAddIdea)(() => (
                             <CustomButton 
                               icon={faLightbulb}
                               text="Nova Oportunidade"

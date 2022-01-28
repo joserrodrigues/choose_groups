@@ -1,6 +1,6 @@
 import {db} from "../../utils/Firestore";
 import moment from 'moment';
-import { maxPersonGroup } from '../../utils/Constants'
+// import { maxPersonGroup } from '../../utils/Constants'
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 class DetailInfoModel {
@@ -23,12 +23,12 @@ class DetailInfoModel {
         }
 
         let newUsers = ideaSnap.data().users;
-        if (newUsers.length >= maxPersonGroup) {
-          callback(false, {
-            description: "Esse grupo já possui " + maxPersonGroup + " membros"
-          });
-          return;
-        }
+        // if (newUsers.length >= maxPersonGroup) {
+        //   callback(false, {
+        //     description: "Esse grupo já possui " + maxPersonGroup + " membros"
+        //   });
+        //   return;
+        // }
 
         //Add new User      
         newUsers.push({
